@@ -6,7 +6,7 @@ import com.github.marcoral.versatia.EnhancementProcessor
 import com.github.marcoral.versatia.classLoader
 import com.github.marcoral.versatia.di.BeanResolver
 import com.github.marcoral.versatia.engine.descriptor.EnhancedElement
-import com.github.marcoral.versatia.engine.descriptor.FunctionOwner
+import com.github.marcoral.versatia.engine.descriptor.MemberOwner
 import com.github.marcoral.versatia.engine.descriptor.FunctionTarget
 
 /**
@@ -21,9 +21,9 @@ class TimedEnhancementProcessor : EnhancementProcessor {
             val ticks = element.annotation.arguments["everyTicks"] as Long
             val description = "${target.className}.${target.functionName}()"
             val instance = when (target.owner) {
-                FunctionOwner.PLUGIN -> context.plugin
-                FunctionOwner.OBJECT -> Class.forName(target.binaryClassName, true, context.classLoader).getDeclaredField("INSTANCE").get(null)
-                FunctionOwner.INSTANCE -> beans?.instanceOf(target.className) ?: throw EnhancementException("Plugin ${context.plugin.name}: no bean ${target.className} exists to call $description on")
+                MemberOwner.PLUGIN -> context.plugin
+                MemberOwner.OBJECT -> Class.forName(target.binaryClassName, true, context.classLoader).getDeclaredField("INSTANCE").get(null)
+                MemberOwner.INSTANCE -> beans?.instanceOf(target.className) ?: throw EnhancementException("Plugin ${context.plugin.name}: no bean ${target.className} exists to call $description on")
             }
             val arguments = if (target.parameters.isEmpty()) emptyList() else beans?.resolve(description, target.parameters)
                 ?: throw EnhancementException("Plugin ${context.plugin.name}: $description needs injected parameters, but the plugin has no beans")
