@@ -30,7 +30,7 @@ class TimedEnhancementProcessor : EnhancementProcessor {
                 ?: throw EnhancementException("Plugin ${context.plugin.name}: $description needs injected parameters, but the plugin has no beans")
             // The context lives for one event; the task keeps only what it needs
             val classLoader = context.classLoader
-            context.plugin.runTaskTimer(delayTicks = ticks, periodTicks = ticks) { target.invoker.invoke(classLoader, instance, arguments) }
+            context.plugin.runTaskTimer(periodTicks = ticks, delayTicks = ticks) { target.invoker.invoke(classLoader, instance, arguments) }
             context.plugin.logger.info("[${javaClass.simpleName}] scheduled ${target.functionName}() every $ticks ticks")
         }
     }
