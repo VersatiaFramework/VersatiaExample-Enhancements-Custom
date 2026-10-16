@@ -8,7 +8,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.yaml:snakeyaml:2.4")
+        classpath(libs.snakeyaml)
     }
 }
 
@@ -25,13 +25,11 @@ base {
     archivesName = "VersatiaExample-Enhancements-Custom"
 }
 
-val versatiaVersion = "0.0.1"
-
 // The starter exports VersatiaAPI (with the Paper API and Kotlin) and the module APIs; nothing is bundled,
 // on the server these classes come from VersatiaCore and the module plugins (see plugin.yml)
 dependencies {
-    implementation("com.github.marcoral.versatia:VersatiaStarter:$versatiaVersion")
-    ksp("com.github.marcoral.versatia:VersatiaAPI-ksp:$versatiaVersion")
+    implementation(libs.versatia.starter)
+    ksp(libs.versatia.ksp)
     // On the server the annotation and the processor come from TimingLibrary through depend:
     compileOnly(project(":library"))
 }
@@ -60,12 +58,17 @@ tasks.processResources {
 // Paper skips a plugin whose plugin.yml does not parse; fail the build instead
 val checkPluginYml = tasks.register("checkPluginYml") {
     group = "verification"
-    description = "Checks that plugin.yml parses and names the plugin, its main class and VersatiaCore."
+    description = "Checks that plugin.yml parses and names the plugin, its main class and VersatiaCore, and that there is no paper-plugin.yml."
     val pluginYml = layout.buildDirectory.file("resources/main/plugin.yml")
+    val paperPluginYml = layout.projectDirectory.file("src/main/resources/paper-plugin.yml")
     dependsOn(tasks.processResources)
-    inputs.file(pluginYml)
+    inputs.files(pluginYml, paperPluginYml)
     doLast {
+        val paperFile = paperPluginYml.asFile
+        if (paperFile.exists())
+            throw GradleException("Versatia plugins use plugin.yml; remove paper-plugin.yml ($paperFile). Paper prefers it to plugin.yml and loads the JAR as a Paper plugin, whose isolated class loader does not share VersatiaCore's Kotlin and VersatiaAPI classes the way depend: does. See https://versatiaframework.github.io/VersatiaDocs/docs/getting-started/installation#pluginyml")
         val file = pluginYml.get().asFile
+        if (!file.exists()) throw GradleException("$file is missing; add src/main/resources/plugin.yml")
         val root = file.reader().use { Yaml().load<Any?>(it) } as? Map<*, *>
             ?: throw GradleException("$file is not a YAML mapping")
         val missing = listOf("name", "version", "main").filter { root[it] == null }
