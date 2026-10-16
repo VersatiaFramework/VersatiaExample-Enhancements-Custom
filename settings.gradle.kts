@@ -1,11 +1,22 @@
-    rootProject.name = "VersatiaExample-Enhancements-Custom"
+rootProject.name = "VersatiaExample-Enhancements-Custom"
 
-    pluginManagement {
-        repositories {
-            gradlePluginPortal()
-            mavenCentral()
-        }
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
     }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
+    repositories {
+        // The Versatia artifacts are consumed from the local Maven repository (`./gradlew publishToMavenLocal` in each checkout)
+        mavenLocal { content { includeGroup("com.github.marcoral.versatia") } }
+        mavenCentral()
+        // Needed to resolve the Paper API that VersatiaAPI exports
+        maven("https://repo.papermc.io/repository/maven-public/")
+    }
+}
 
 include("library")
 include("plugin")
