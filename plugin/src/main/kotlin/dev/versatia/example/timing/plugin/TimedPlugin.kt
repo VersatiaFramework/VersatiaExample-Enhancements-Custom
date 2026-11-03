@@ -1,8 +1,8 @@
-package com.github.marcoral.versatia.example.timing.plugin
+package dev.versatia.example.timing.plugin
 
-import com.github.marcoral.versatia.VersatiaPlugin
-import com.github.marcoral.versatia.di.LocalBean
-import com.github.marcoral.versatia.example.timing.Timed
+import dev.versatia.VersatiaPlugin
+import dev.versatia.di.LocalBean
+import dev.versatia.example.timing.Timed
 import java.time.Instant
 
 class TimedPlugin : VersatiaPlugin() {

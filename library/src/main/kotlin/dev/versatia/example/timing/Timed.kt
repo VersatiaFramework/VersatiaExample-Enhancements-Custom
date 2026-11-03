@@ -1,7 +1,7 @@
-package com.github.marcoral.versatia.example.timing
+package dev.versatia.example.timing
 
-import com.github.marcoral.versatia.Phase
-import com.github.marcoral.versatia.VersatiaEnhancement
+import dev.versatia.Phase
+import dev.versatia.VersatiaEnhancement
 
 /** Runs the annotated function every [everyTicks] ticks, with its parameters injected like bean dependencies. */
 @Target(AnnotationTarget.FUNCTION)
@@ -10,5 +10,5 @@ import com.github.marcoral.versatia.VersatiaEnhancement
 annotation class Timed(val everyTicks: Long)
 
 object TimingProcessors {
-    const val TIMED = "com.github.marcoral.versatia.example.timing.TimedEnhancementProcessor"
+    const val TIMED = "dev.versatia.example.timing.TimedEnhancementProcessor"
 }

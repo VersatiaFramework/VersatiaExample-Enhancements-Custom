@@ -2,9 +2,9 @@
 
 An enhancement of your own: a library plugin defines `@Timed` and its processor, and another plugin uses the annotation to run a function every few ticks with injected parameters.
 
-Part of the [Versatia examples](https://github.com/VersatiaFramework/VersatiaExamples); documentation: [Defining your own enhancement](https://versatiaframework.github.io/VersatiaDocs/docs/internals/enhancements#defining-your-own-enhancement).
+Part of the [Versatia examples](https://github.com/VersatiaFramework/VersatiaExamples); documentation: [Defining your own enhancement](https://versatia.dev/docs/internals/enhancements#defining-your-own-enhancement).
 
-**Start with** [`library/.../Timed.kt`](library/src/main/kotlin/com/github/marcoral/versatia/example/timing/Timed.kt) and [`TimedEnhancementProcessor.kt`](library/src/main/kotlin/com/github/marcoral/versatia/example/timing/TimedEnhancementProcessor.kt), then [`plugin/.../TimedPlugin.kt`](plugin/src/main/kotlin/com/github/marcoral/versatia/example/timing/plugin/TimedPlugin.kt).
+**Start with** [`library/.../Timed.kt`](library/src/main/kotlin/dev/versatia/example/timing/Timed.kt) and [`TimedEnhancementProcessor.kt`](library/src/main/kotlin/dev/versatia/example/timing/TimedEnhancementProcessor.kt), then [`plugin/.../TimedPlugin.kt`](plugin/src/main/kotlin/dev/versatia/example/timing/plugin/TimedPlugin.kt).
 
 ## What the log shows
 
@@ -28,7 +28,7 @@ heartbeat at ...
 
 Requires JDK 21 and VersatiaAPI in your
 local Maven repository (`./gradlew publishToMavenLocal` in each checkout; see
-[Building the framework](https://versatiaframework.github.io/VersatiaDocs/docs/contributing/building));
+[Building the framework](https://versatia.dev/docs/contributing/building));
 running it requires a Paper 1.21.4 server with VersatiaCore installed.
 
 ```bash

@@ -1,4 +1,4 @@
-package com.github.marcoral.versatia.example.timing
+package dev.versatia.example.timing
 
 import org.bukkit.plugin.java.JavaPlugin
 

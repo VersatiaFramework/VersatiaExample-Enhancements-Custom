@@ -1,6 +1,6 @@
 name: VersatiaExample-Enhancements-Custom
 version: '${version}'
-main: com.github.marcoral.versatia.example.timing.plugin.TimedPlugin
+main: dev.versatia.example.timing.plugin.TimedPlugin
 api-version: '1.21'
 author: Versatia
 description: Uses the @Timed enhancement provided by TimingLibrary.

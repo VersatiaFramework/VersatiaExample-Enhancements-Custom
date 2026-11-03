@@ -1,14 +1,14 @@
-package com.github.marcoral.versatia.example.timing
+package dev.versatia.example.timing
 
-import com.github.marcoral.versatia.EnhancementContext
-import com.github.marcoral.versatia.EnhancementProcessor
-import com.github.marcoral.versatia.classLoader
-import com.github.marcoral.versatia.engine.descriptor.EnhancedElement
-import com.github.marcoral.versatia.engine.descriptor.FunctionTarget
-import com.github.marcoral.versatia.inject
-import com.github.marcoral.versatia.receiverOf
-import com.github.marcoral.versatia.targetAs
-import com.github.marcoral.versatia.util.scheduler.runTaskTimer
+import dev.versatia.EnhancementContext
+import dev.versatia.EnhancementProcessor
+import dev.versatia.classLoader
+import dev.versatia.engine.descriptor.EnhancedElement
+import dev.versatia.engine.descriptor.FunctionTarget
+import dev.versatia.inject
+import dev.versatia.receiverOf
+import dev.versatia.targetAs
+import dev.versatia.util.scheduler.runTaskTimer
 
 /**
  * Schedules every `@Timed` function once the plugin's beans exist. No fields: whatever a processor
