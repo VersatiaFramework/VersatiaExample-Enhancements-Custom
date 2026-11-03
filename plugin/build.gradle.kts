@@ -25,10 +25,10 @@ base {
     archivesName = "VersatiaExample-Enhancements-Custom"
 }
 
-// The starter exports VersatiaAPI (with the Paper API and Kotlin) and the module APIs; nothing is bundled,
-// on the server these classes come from VersatiaCore and the module plugins (see plugin.yml)
+// VersatiaAPI brings the Paper API and Kotlin, for compilation only: on the server these classes come from
+// VersatiaCore (see plugin.yml), so nothing is bundled
 dependencies {
-    implementation(libs.versatia.starter)
+    compileOnly(libs.versatia.api)
     ksp(libs.versatia.ksp)
     // On the server the annotation and the processor come from TimingLibrary through depend:
     compileOnly(project(":library"))
