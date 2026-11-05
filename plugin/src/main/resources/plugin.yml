@@ -1,7 +1,7 @@
 name: VersatiaExample-Enhancements-Custom
 version: '${version}'
 main: dev.versatia.example.timing.plugin.TimedPlugin
-api-version: '1.21'
+api-version: '26.3'
 author: Versatia
 description: Uses the @Timed enhancement provided by TimingLibrary.
 # Kotlin classes come from VersatiaCore's class loader; do not list kotlin-stdlib here
